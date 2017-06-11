@@ -10,7 +10,12 @@ public class ActorUpdater {
 	public static void main(String[] args) {
 		ActorBean bean = getUpdateData();
 		ActorDAO dao = new ActorDAO();
-		dao.update(bean);
+		boolean result = dao.update(bean);
+		if(result){
+			System.out.println("Aggiornamento effettuato con successo");
+		}else{
+			System.out.println("Errore durante l'aggiornamento");
+		}
 	}
 	
 	private static ActorBean getUpdateData(){

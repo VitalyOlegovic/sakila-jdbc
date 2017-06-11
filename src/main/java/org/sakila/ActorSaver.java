@@ -10,7 +10,12 @@ public class ActorSaver {
 	public static void main(String[] args) {
 		ActorBean bean = getActorData();
 		ActorDAO dao = new ActorDAO();
-		dao.save(bean);
+		boolean result = dao.save(bean);
+		if(result){
+			System.out.println("Inserimento effettuato con successo");
+		}else{
+			System.out.println("Errore durante l'inserimento");
+		}
 	}
 	
 	public static ActorBean getActorData(){

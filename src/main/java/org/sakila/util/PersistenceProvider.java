@@ -34,7 +34,8 @@ public class PersistenceProvider {
             String databaseName = "sakila";
             String userName = "sakila";
             String password = "sakila";
-            String url = "jdbc:mysql://" + host + ":3306/" + databaseName;
+            String url = "jdbc:mysql://" + host + ":3306/" + databaseName + 
+                    "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             
             conn = DriverManager.getConnection(url,userName, password);
             //initDb();

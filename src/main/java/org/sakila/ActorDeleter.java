@@ -11,6 +11,11 @@ public class ActorDeleter {
 		int id = scanner.nextInt();
 		scanner.close();
 		ActorDAO actorDAO = new ActorDAO();
-		actorDAO.delete(id);
+		boolean result = actorDAO.delete(id);
+		if(result){
+		    System.out.println("Eliminazione effettuata con successo");
+        }else{
+		    System.out.println("Errore durante l'eliminazione");
+        }
 	}
 }

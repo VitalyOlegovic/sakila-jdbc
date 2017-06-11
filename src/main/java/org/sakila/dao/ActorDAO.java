@@ -41,7 +41,8 @@ public class ActorDAO {
         return actorBeanList;
     }
 
-    public void save(ActorBean bean){
+    public boolean save(ActorBean bean){
+		boolean result;
 
     	try {
         	PreparedStatement preparedStatement =
@@ -50,13 +51,17 @@ public class ActorDAO {
 			preparedStatement.setString(1, bean.getFirstName());
 			preparedStatement.setString(2, bean.getLastName());
 			preparedStatement.execute();
+			result = true;
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
+			result = false;
 		}
-    	
+    	return result;
     }
     
-    public void update(ActorBean bean){
+    public boolean update(ActorBean bean){
+        boolean result;
+
     	try {
         	PreparedStatement preparedStatement =
         			PersistenceProvider.getInstance().prepareStatement(
@@ -65,21 +70,29 @@ public class ActorDAO {
 			preparedStatement.setString(2, bean.getLastName());
 			preparedStatement.setInt(3, bean.getActorId());
 			preparedStatement.execute();
+			result = true;
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
+			result = false;
 		}
+		return result;
     }
     
-    public void delete(int id){
+    public boolean delete(int id){
+        boolean result;
+
     	try {
         	PreparedStatement preparedStatement =
         			PersistenceProvider.getInstance().prepareStatement(
         					"delete from actor where actor_id = ?");
 			preparedStatement.setInt(1, id);
 			preparedStatement.execute();
+			result = true;
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
+			result = false;
 		}
+		return result;
     }
     
 }
